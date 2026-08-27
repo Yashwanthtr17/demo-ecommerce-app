@@ -6,7 +6,7 @@ Here's how to deploy it on CentOS systems:
 
 ## Deploy Pre-Requisites
 
-1. Install FirewallD
+1. Install FirewallD to enable the service
 
 ```
 sudo yum install -y firewalld
@@ -17,7 +17,7 @@ sudo systemctl status firewalld
 
 ## Deploy and Configure Database
 
-1. Install MariaDB
+1. Install MariaDB for storing the data
 
 ```
 sudo yum install -y mariadb-server
@@ -26,7 +26,7 @@ sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
 
-2. Configure firewall for Database
+2. Configure firewall for Database and assign a port to run string
 
 ```
 sudo firewall-cmd --permanent --zone=public --add-port=3306/tcp
@@ -36,7 +36,7 @@ sudo firewall-cmd --reload
 3. Configure Database
 
 ```
-$ mysql
+$ sudo mysql
 MariaDB > CREATE DATABASE ecomdb;
 MariaDB > CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';
 MariaDB > GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost';
